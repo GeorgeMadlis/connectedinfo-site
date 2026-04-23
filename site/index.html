@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConnectedInfo</title>
+  <meta name="description" content="ConnectedInfo reframes AI-assisted queries into focused questions and checks the validity of claims that circulate widely online. A sibling site to ConnectedNature.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f1e8;
+      --bg-deep: #ebe5d6;
+      --surface: rgba(255, 252, 246, 0.76);
+      --surface-strong: rgba(255, 252, 246, 0.92);
+      --text: #24221d;
+      --text-soft: #5d584f;
+      --accent: #64785f;              /* shared with ConnectedNature */
+      --accent-strong: #465843;
+      --accent-warm: #8a6a3b;         /* secondary: "question marks" */
+      --accent-warm-strong: #6b4e29;
+      --line: rgba(70, 88, 67, 0.16);
+      --line-warm: rgba(138, 106, 59, 0.22);
+      --shadow-soft: 0 10px 26px rgba(32, 30, 24, 0.04);
+      --shadow: 0 18px 44px rgba(32, 30, 24, 0.06);
+      --max-width: 64rem;
+      --content-width: 42rem;
+      --radius: 1.1rem;
+      --heading-font: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body-font: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(100, 120, 95, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 106, 59, 0.08), transparent 30%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 48%, #f0eadf 100%);
+      font-family: var(--body-font);
+      font-size: 1.03rem;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 0.06em;
+      text-underline-offset: 0.16em;
+      transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+    a:hover, a:focus-visible { color: var(--accent-strong); }
+
+    :focus-visible {
+      outline: 2px solid rgba(70, 88, 67, 0.34);
+      outline-offset: 0.18rem;
+    }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: absolute; left: 1rem; top: -3rem;
+      padding: 0.8rem 1rem;
+      border-radius: 0.65rem;
+      background: var(--accent-strong);
+      color: #fff; text-decoration: none;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 241, 232, 0.93);
+      backdrop-filter: blur(12px);
+    }
+    .site-header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; padding: 1rem 0;
+    }
+    .brand-block { display: flex; flex-direction: column; gap: 0.15rem; }
+    .site-title {
+      font-family: var(--heading-font);
+      font-size: 1.6rem; text-decoration: none; letter-spacing: 0.01em;
+    }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 0.65rem 0.9rem; }
+    .site-nav a {
+      color: var(--text-soft); text-decoration: none;
+      padding: 0.3rem 0.1rem;
+      border-bottom: 1px solid transparent;
+      font-size: 0.95rem;
+    }
+    .site-nav a:hover, .site-nav a:focus-visible {
+      border-color: rgba(70, 88, 67, 0.22);
+    }
+    .site-nav a[aria-current="page"] {
+      color: var(--accent-strong); font-weight: 600;
+      border-color: rgba(70, 88, 67, 0.26);
+    }
+    .site-nav a.sibling {
+      color: var(--accent-warm-strong);
+    }
+
+    .eyebrow {
+      margin-bottom: 0.85rem;
+      color: var(--accent); font-size: 0.76rem;
+      font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .eyebrow-warm { color: var(--accent-warm-strong); }
+
+    h1, h2, h3 {
+      margin: 0 0 0.9rem;
+      font-family: var(--heading-font);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.012em;
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); max-width: 18ch; }
+    h2 { font-size: clamp(1.55rem, 2.6vw, 2.1rem); max-width: 26ch; }
+    h3 { font-size: clamp(1.18rem, 1.9vw, 1.35rem); }
+
+    p, li { margin-bottom: 1.05rem; }
+    .lead {
+      max-width: 46rem;
+      color: var(--text-soft);
+      font-size: clamp(1.08rem, 1.25vw, 1.18rem);
+      line-height: 1.8;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: clamp(3.4rem, 6vw, 4.8rem) 0 clamp(2.4rem, 4vw, 3.4rem);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.95fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .hero-copy { max-width: 48rem; }
+
+    /* The "site pair" card — shows the relationship to ConnectedNature visually */
+    .pair-card {
+      padding: 1.3rem 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(235, 245, 232, 0.55), rgba(255, 252, 246, 0.9));
+      box-shadow: var(--shadow);
+    }
+    .pair-card h3 {
+      font-size: 1.1rem; margin-bottom: 0.8rem;
+    }
+    .pair-row {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      padding: 0.6rem 0;
+      border-top: 1px solid rgba(70, 88, 67, 0.12);
+    }
+    .pair-row:first-of-type { border-top: none; padding-top: 0; }
+    .pair-row:last-of-type { padding-bottom: 0; }
+    .pair-row .dot {
+      width: 0.55rem; height: 0.55rem; border-radius: 999px;
+      flex: none; transform: translateY(0.4rem);
+    }
+    .pair-row .dot.green { background: var(--accent); }
+    .pair-row .dot.warm  { background: var(--accent-warm); }
+    .pair-row .meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+    .pair-row .title {
+      font-family: var(--heading-font);
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+    .pair-row .title a { text-decoration: none; }
+    .pair-row .title a:hover { text-decoration: underline; }
+    .pair-row .desc {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      margin: 0.15rem 0 0;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: clamp(1.2rem, 3vw, 2rem) 0 clamp(2.7rem, 5vw, 4rem);
+    }
+    .section-tinted {
+      padding: clamp(2.3rem, 4vw, 3.3rem) 0 clamp(2.8rem, 5vw, 4rem);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(235, 229, 214, 0.46);
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* Numbered process */
+    .process-list {
+      margin: 0; padding-left: 1.2rem;
+      counter-reset: step;
+      list-style: none;
+    }
+    .process-list li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.2rem;
+      margin-bottom: 1rem;
+      max-width: 38rem;
+    }
+    .process-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 0.05rem;
+      width: 1.7rem; height: 1.7rem;
+      border-radius: 999px;
+      background: rgba(100, 120, 95, 0.14);
+      color: var(--accent-strong);
+      font-family: var(--heading-font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .process-list li strong { color: var(--text); }
+
+    /* ── Inquiry feature card ── */
+    .feature-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: clamp(1.5rem, 2.5vw, 2.2rem);
+      border: 1px solid var(--line-warm);
+      border-left: 4px solid var(--accent-warm);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 240, 0.94), rgba(250, 244, 232, 0.82));
+      box-shadow: var(--shadow);
+    }
+    .feature-card .meta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--accent-warm-strong);
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .feature-card .meta::before {
+      content: ""; width: 0.45rem; height: 0.45rem;
+      border-radius: 999px; background: var(--accent-warm);
+    }
+    .feature-card h3 {
+      font-size: clamp(1.3rem, 2.3vw, 1.7rem);
+      max-width: 34ch;
+      margin-bottom: 0.4rem;
+    }
+    .feature-card h3 a {
+      text-decoration: none;
+      background-image: linear-gradient(var(--accent-warm), var(--accent-warm));
+      background-repeat: no-repeat;
+      background-size: 100% 0.08em;
+      background-position: 0 92%;
+    }
+    .feature-card h3 a:hover {
+      color: var(--accent-warm-strong);
+    }
+    .feature-card p {
+      max-width: 44rem;
+      color: var(--text-soft);
+      margin-bottom: 0;
+    }
+    .feature-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.4rem;
+    }
+    .feature-meta-grid .cell {
+      padding: 0.8rem 0.95rem;
+      border: 1px solid rgba(138, 106, 59, 0.16);
+      border-radius: 0.85rem;
+      background: rgba(255, 255, 255, 0.55);
+    }
+    .feature-meta-grid .cell p { margin: 0; }
+    .feature-meta-grid .cell .label {
+      color: var(--accent-warm-strong);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .feature-meta-grid .cell .value {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .feature-cta {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.65rem 1.05rem;
+      margin-top: 0.4rem;
+      border: 1px solid var(--accent-warm);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent-warm-strong);
+      font-family: var(--body-font);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      align-self: start;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+    .feature-cta:hover {
+      background: var(--accent-warm);
+      color: #fffdf7;
+      transform: translateY(-1px);
+    }
+    .feature-cta .arrow { transition: transform 200ms ease; }
+    .feature-cta:hover .arrow { transform: translateX(3px); }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: rgba(238, 232, 219, 0.52);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: 1.7rem 0 2.4rem;
+      align-items: start;
+    }
+    .footer-note {
+      max-width: 34rem;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    .footer-nav {
+      display: flex; flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      justify-content: flex-end;
+    }
+    .footer-nav a {
+      color: var(--text-soft);
+      text-decoration: none;
+      padding-bottom: 0.18rem;
+      border-bottom: 1px solid transparent;
+    }
+    .footer-nav a:hover { border-color: rgba(70, 88, 67, 0.22); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-grid, .method-grid, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      h1, h2 { max-width: 100%; }
+      .footer-nav { justify-content: flex-start; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 1rem; }
+      .hero { padding: 2.6rem 0 2rem; }
+      .feature-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header-inner">
+    <div class="brand-block">
+      <p class="eyebrow eyebrow-warm">Fact-checking AI-assisted queries</p>
+      <a class="site-title" href="#">ConnectedInfo</a>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a aria-current="page" href="#">Home</a>
+      <a href="#inquiries">Inquiries</a>
+      <a href="#method">Method</a>
+      <a class="sibling" href="https://connectednature.org/" target="_blank" rel="noopener noreferrer">ConnectedNature&nbsp;↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow-warm">What this site is for</p>
+        <h1>Connecting independent sources to test claims that travel faster than evidence.</h1>
+        <p class="lead">
+          Often, we need to connect or synthesise information from different independent
+          sources to obtain a broad perspective on answers to questions we are interested
+          in. There is a wide spectrum of such questions covering all aspects of human
+          lives &mdash; political, economic, sociological, and more. Indeed, this is one
+          of the reasons we have media.
+        </p>
+        <p class="lead">
+          The present website, closely related to
+          <a href="https://connectednature.org/" target="_blank" rel="noopener noreferrer">ConnectedNature</a>,
+          reframes AI-based queries into more focused questions that have caught my
+          attention. Recently, I was watching a YouTube video for seniors over&nbsp;65
+          travelling by air. Since it had already been watched by more than
+          300,000 people, it made sense to check the validity of the statements it
+          makes.
+        </p>
+      </div>
+
+      <aside class="pair-card" aria-label="The two sibling sites">
+        <p class="eyebrow">A pair of sites</p>
+        <h3>Two projects, one method</h3>
+
+        <div class="pair-row">
+          <span class="dot green" aria-hidden="true"></span>
+          <div>
+            <span class="meta">Sibling site</span>
+            <p class="title">
+              <a href="https://connectednature.org/" target="_blank" rel="noopener noreferrer">ConnectedNature</a>
+            </p>
+            <p class="desc">
+              Public inquiry into connectedness across nature, society, knowledge, and history.
+            </p>
+          </div>
+        </div>
+
+        <div class="pair-row">
+          <span class="dot warm" aria-hidden="true"></span>
+          <div>
+            <span class="meta">This site</span>
+            <p class="title">ConnectedInfo</p>
+            <p class="desc">
+              Focused fact-checks of AI-assisted queries and widely shared claims.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="inquiries">
+    <div class="wrap">
+      <div style="max-width: 46rem; margin-bottom: 1.8rem;">
+        <p class="eyebrow eyebrow-warm">Latest inquiry</p>
+        <h2>A viral video&rsquo;s claims about &ldquo;new 2026 airport rules&rdquo; for older travellers, tested one claim at a time.</h2>
+        <p style="color: var(--text-soft); max-width: 44rem;">
+          The first inquiry published here examines a YouTube video that reframes
+          longstanding passenger-rights law as &ldquo;silent&rdquo; 2026 rule changes.
+          Each of its twelve claims is checked against the actual regulator &mdash;
+          the TSA, EU Regulation 1107/2006, the Canadian Transportation Agency, and
+          published airline policy &mdash; and marked as real, partial, or false.
+        </p>
+      </div>
+
+      <article class="feature-card">
+        <p class="meta">Published inquiry &middot; v0.2</p>
+        <h3>
+          <a href="airport-rules-for-seniors.html">
+            New Airport Rules for Seniors Over 65: A Claim-by-Claim Evaluation of a Viral Video
+          </a>
+        </h3>
+        <p>
+          The underlying rights the video describes are broadly real, but the framing
+          around them is largely false. Most are not new, not from 2026, not
+          coordinated internationally, and not uniformly applicable to passengers over 65.
+          Several specific claims do not exist as described. The useful takeaway is not
+          the scripted phrases the video recommends &mdash; it is the booking call.
+        </p>
+
+        <div class="feature-meta-grid">
+          <div class="cell">
+            <p class="label">Source under test</p>
+            <p class="value">YouTube transcript, video ID XC9vOltr5JY, 12 specific claims</p>
+          </div>
+          <div class="cell">
+            <p class="label">Jurisdictions checked</p>
+            <p class="value">US, EU (incl. Estonia), UK, Canada</p>
+          </div>
+          <div class="cell">
+            <p class="label">Method</p>
+            <p class="value">Originating statement &rarr; evidence &rarr; source evaluation &rarr; synthesis</p>
+          </div>
+          <div class="cell">
+            <p class="label">Net finding</p>
+            <p class="value">Real rights, false framing. Do not rely on the video.</p>
+          </div>
+        </div>
+
+        <a class="feature-cta" href="airport-rules-for-seniors.html">
+          Read the full inquiry
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-tinted" id="method">
+    <div class="wrap method-grid">
+      <div>
+        <p class="eyebrow">Method in brief</p>
+        <h2>How a claim becomes an inquiry here.</h2>
+        <p style="color: var(--text-soft); max-width: 40rem;">
+          The approach is borrowed directly from ConnectedNature: a claim is never
+          repeated, it is investigated. A specific viral statement is framed as a
+          research question, tested against primary regulators, and answered with
+          visible uncertainty where it exists.
+        </p>
+      </div>
+
+      <ol class="process-list">
+        <li>
+          <strong>Pick a claim that travels.</strong>
+          Something widely shared, often through AI-assisted video or social content,
+          whose factual basis is not obvious.
+        </li>
+        <li>
+          <strong>Reframe it as a testable question.</strong>
+          Replace rhetoric with a specific proposition: what is claimed, by whom, with
+          what effective date, in which jurisdiction.
+        </li>
+        <li>
+          <strong>Connect independent sources.</strong>
+          Regulator pages, official airline or airport policy, statutes and their
+          interpretive guidance &mdash; not secondary commentary, and not other videos.
+        </li>
+        <li>
+          <strong>Publish the synthesis with its limits.</strong>
+          State what the evidence supports, what it only suggests, and what remains open.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="eyebrow eyebrow-warm">ConnectedInfo</p>
+      <p class="footer-note">
+        A focused fact-check companion to
+        <a href="https://connectednature.org/" target="_blank" rel="noopener noreferrer">ConnectedNature</a>.
+        Specific questions, primary sources, visible uncertainty.
+      </p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#inquiries">Inquiries</a>
+      <a href="#method">Method</a>
+      <a href="airport-rules-for-seniors.html">Airport rules for seniors</a>
+      <a href="https://connectednature.org/" target="_blank" rel="noopener noreferrer">ConnectedNature&nbsp;↗</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

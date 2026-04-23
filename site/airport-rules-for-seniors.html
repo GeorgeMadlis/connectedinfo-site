@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airport Rules for Seniors Over 65 — A Critical Inquiry</title>
+  <meta name="description" content="A claim-by-claim evaluation of a viral YouTube transcript about alleged 2026 airport rules for seniors, checked against official regulators and operator policies.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f1e8;
+      --surface: rgba(255, 252, 246, 0.76);
+      --surface-strong: rgba(255, 252, 246, 0.92);
+      --text: #24221d;
+      --text-soft: #5d584f;
+      --accent: #64785f;
+      --accent-strong: #465843;
+      --accent-warn: #8a5a3b;
+      --accent-warn-strong: #6b4429;
+      --accent-caution: #8a7a3b;
+      --line: rgba(70, 88, 67, 0.16);
+      --line-warn: rgba(138, 90, 59, 0.22);
+      --shadow-soft: 0 10px 26px rgba(32, 30, 24, 0.04);
+      --max-width: 64rem;
+      --heading-font: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body-font: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--body-font);
+      font-size: 1.03rem;
+      line-height: 1.78;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(100, 120, 95, 0.12), transparent 28%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 48%, #f0eadf 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header.site {
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 2rem;
+      background: rgba(244, 241, 232, 0.93);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+    nav.site {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .site-name {
+      font-family: var(--heading-font);
+      font-size: 1.25rem;
+      color: var(--text);
+      text-decoration: none;
+      margin-right: auto;
+      letter-spacing: 0.01em;
+    }
+    nav.site a, nav.site span.draft {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+    nav.site span.draft {
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--line-warn);
+      border-radius: 999px;
+      color: var(--accent-warn-strong);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .label-centered {
+      text-align: center;
+      padding: 2rem 2rem 0;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+    }
+
+    h1 {
+      font-family: var(--heading-font);
+      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      line-height: 1.2;
+      margin: 1.2rem 0 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.8rem 0 0.9rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      letter-spacing: -0.005em;
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; margin-top: 1.4rem; }
+
+    h3 {
+      font-family: var(--heading-font);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.5rem;
+    }
+
+    p { margin-bottom: 1.05rem; max-width: 42rem; }
+    ul, ol { margin: 0.4rem 0 1rem 1.3rem; max-width: 42rem; }
+    li { margin-bottom: 0.45rem; }
+
+    blockquote.statement {
+      border-left: 3px solid var(--accent-warn);
+      margin: 1.25rem 0;
+      padding: 0.9rem 1.25rem;
+      background: rgba(235, 220, 200, 0.35);
+      font-family: var(--heading-font);
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--accent-warn-strong);
+      max-width: 44rem;
+    }
+
+    .source-note {
+      max-width: 44rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: rgba(255, 252, 246, 0.62);
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-soft);
+      max-width: 44rem;
+    }
+
+    /* Verdict banner */
+    .verdict {
+      margin: 1.8rem 0 1rem;
+      padding: 1.1rem 1.3rem;
+      border: 1px solid var(--line-warn);
+      border-left: 4px solid var(--accent-warn);
+      border-radius: 0.8rem;
+      background: rgba(255, 248, 238, 0.8);
+      max-width: 44rem;
+    }
+    .verdict .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-warn-strong);
+      margin-bottom: 0.4rem;
+    }
+    .verdict p { margin-bottom: 0; }
+
+    /* Claim table */
+    .claim-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0 1.8rem;
+      font-size: 0.94rem;
+      table-layout: fixed;
+    }
+    .claim-table th, .claim-table td {
+      text-align: left;
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .claim-table th {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      background: rgba(255, 252, 246, 0.7);
+    }
+    /* Column widths: #, Video claim, Type, Verdict, Actual position */
+    .claim-table col.c-num     { width: 3rem; }
+    .claim-table col.c-claim   { width: 25%; }
+    .claim-table col.c-type    { width: 10%; }
+    .claim-table col.c-verdict { width: 15%; }
+    .claim-table col.c-actual  { width: auto; } /* takes the rest */
+    .claim-table td:first-child { font-weight: 600; }
+
+    .verdict-pill {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: normal;
+      max-width: 100%;
+      line-height: 1.35;
+    }
+    .v-exists   { background: rgba(100, 120, 95, 0.15); color: var(--accent-strong); }
+    .v-partial  { background: rgba(138, 122, 59, 0.15); color: var(--accent-caution); }
+    .v-false    { background: rgba(138, 90, 59, 0.15);  color: var(--accent-warn-strong); }
+    .type-pill  {
+      display: inline-block;
+      padding: 0.12rem 0.42rem;
+      border: 1px solid rgba(70, 88, 67, 0.16);
+      border-radius: 0.55rem;
+      color: var(--accent-strong);
+      background: rgba(255, 252, 246, 0.62);
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    /* Jurisdiction cards */
+    .jur-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 1rem;
+      margin: 1.3rem 0 1.8rem;
+      max-width: 54rem;
+    }
+    .jur-card {
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.8rem;
+      background: var(--surface-strong);
+      box-shadow: var(--shadow-soft);
+    }
+    .jur-card h4 {
+      font-family: var(--heading-font);
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+    .jur-card p { font-size: 0.92rem; margin-bottom: 0; color: var(--text-soft); }
+    .jur-card .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin-bottom: 0.45rem;
+    }
+
+    /* Footnote style */
+    sup.ref a {
+      color: var(--accent-strong);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    sup.ref a:hover { text-decoration: underline; }
+
+    .refs {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+    .refs ol { padding-left: 1.4rem; }
+    .refs li {
+      margin-bottom: 0.7rem;
+      color: var(--text-soft);
+    }
+    .refs li a { color: var(--accent-strong); word-break: break-word; }
+
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 760px) {
+      .claim-table { font-size: 0.86rem; }
+      .claim-table th, .claim-table td { padding: 0.55rem 0.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="site">
+    <a href="index.html" class="site-name" style="text-decoration: none; color: inherit;">ConnectedInfo</a>
+    <span class="draft">Published inquiry · v0.2</span>
+  </nav>
+</header>
+
+<div class="label-centered eyebrow" style="color: var(--accent-warn);">First Published Inquiry</div>
+
+<main>
+
+  <h1>New Airport Rules for Seniors Over 65: A Claim-by-Claim Evaluation of a Viral Video</h1>
+
+  <p class="lead">
+    A YouTube video transcript claims that a set of "silent" new airport rules came
+    into force worldwide at the turn of 2026, and that airlines are hiding these
+    changes from passengers over 65. This inquiry treats the transcript as a source
+    of claims, not as a source of evidence. It asks two questions: whether the rules
+    it describes actually exist, and whether they apply worldwide.
+  </p>
+
+  <h2>Originating statement</h2>
+
+  <blockquote class="statement">
+    "silent updates buried deep inside procedures" for travellers "over 65"
+  </blockquote>
+
+  <p class="source-note">
+    Source under test: YouTube video <code>XC9vOltr5JY</code>, transcribed in
+    <code>AirportRules.txt</code>. The transcript is used only to identify the
+    twelve claims being tested; it is not used as evidence for any aviation rule.
+  </p>
+
+  <p>
+    The video presents twelve specific operational "rules" — medical-item exemptions at
+    security, assisted boarding, non-separation from a companion, continuous mobility
+    assistance, free accessible seating, in-flight refrigeration of medication, quiet
+    rooms, an uncounted medical bag, a "special service request" keyword, a right to
+    refuse gate-checking of medical carry-on, senior fee waivers, and gate-level
+    "courtesy flexibility" — each framed as a new international standard that agents
+    "still ignore" because training has not caught up.
+  </p>
+
+  <div class="verdict">
+    <div class="label">Summary verdict — up front</div>
+    <p>
+      The underlying rights the video describes are broadly real, but the framing
+      around them is largely false. Most are not new, not from 2026, not coordinated
+      internationally, and not uniformly applicable. Several described "rules" do not
+      exist as the video claims. The video is best read as a repackaging of
+      longstanding passengers-with-reduced-mobility (PRM) law and published airline
+      policy, mixed with exaggeration and invented magic-phrase scripts. The net
+      recommendation is not to rely on it.
+    </p>
+  </div>
+
+  <h2>Why this matters</h2>
+
+  <p>
+    Older travellers are one of the groups most vulnerable to both bad advice and
+    under-assertion of real rights. If the video is accurate, seniors have been
+    systematically under-served and a simple script fixes it. If it is inaccurate,
+    seniors who repeat its "exact phrases" at a security checkpoint or gate may get
+    worse service — not better — because they are asserting a regulation that does
+    not exist, or misnaming one that does.
+  </p>
+  <p>
+    There is also a second-order issue. The transcript arrives from a broader YouTube
+    genre of travel-advice videos that use urgent dates, hidden-rule framing, and
+    scripted phrases. Evaluating one such video carefully is also a way of building
+    a method for evaluating the genre.
+  </p>
+
+  <h2>Research question</h2>
+
+  <p>
+    Do the twelve specific "rules" described in the video correspond to actual
+    regulations in force in the main jurisdictions that govern international air
+    travel — in particular the United States (TSA, DOT), the European Union
+    (including Estonia), the United Kingdom, and Canada — and does a senior traveller
+    flying through, say, Tallinn, Toronto, or Frankfurt have the rights the video
+    describes?
+  </p>
+
+  <h2>Evidence base</h2>
+
+  <p>
+    For each of the twelve claims, the primary authority is the relevant regulator,
+    airport operator, or airline policy page, not secondary commentary. The sources
+    consulted are:
+  </p>
+  <ul>
+    <li>
+      <strong>United States:</strong> Transportation Security Administration (TSA)
+      official guidance on medical devices, medical liquids, and disabilities
+      <sup class="ref"><a href="#r-tsa-disabilities">[1]</a></sup>
+      <sup class="ref"><a href="#r-tsa-cpap">[2]</a></sup>; Department of Transportation
+      Air Carrier Access Act materials on assistance, seating, and assistive devices
+      <sup class="ref"><a href="#r-dot-acaa">[3]</a></sup>
+      <sup class="ref"><a href="#r-dot-wheelchair">[4]</a></sup>
+      <sup class="ref"><a href="#r-dot-seating">[5]</a></sup>
+      <sup class="ref"><a href="#r-dot-devices">[6]</a></sup>.
+    </li>
+    <li>
+      <strong>European Union and United Kingdom:</strong> Regulation (EC) No 1107/2006
+      and the Commission's 2024 interpretative guidelines
+      <sup class="ref"><a href="#r-eu1107">[7]</a></sup>
+      <sup class="ref"><a href="#r-eu1107-guide">[8]</a></sup>, plus UK Civil Aviation
+      Authority guidance on assisted travel
+      <sup class="ref"><a href="#r-uk-caa">[9]</a></sup>.
+    </li>
+    <li>
+      <strong>Tallinn Airport (Lennart Meri, TLL):</strong> published PRM service page
+      and contact number <sup class="ref"><a href="#r-tll">[10]</a></sup>.
+    </li>
+    <li>
+      <strong>Canada:</strong> Accessible Transportation for Persons with Disabilities
+      Regulations (ATPDR) and Canadian Transportation Agency guidance
+      <sup class="ref"><a href="#r-canada-atpdr">[11]</a></sup>
+      <sup class="ref"><a href="#r-cta-guide">[12]</a></sup>.
+    </li>
+    <li>
+      <strong>Airline and airport operator policies:</strong> Delta and Air Canada pages
+      on medication, medical devices, carry-on allowance, and fare discounts
+      <sup class="ref"><a href="#r-delta-medication">[13]</a></sup>
+      <sup class="ref"><a href="#r-air-canada-carryon">[14]</a></sup>
+      <sup class="ref"><a href="#r-delta-fares">[15]</a></sup>
+      <sup class="ref"><a href="#r-delta-medical-supplies">[16]</a></sup>, and airport operator pages
+      for sensory rooms and PRM service coding
+      <sup class="ref"><a href="#r-dublin-sensory">[17]</a></sup>
+      <sup class="ref"><a href="#r-gatwick-sensory">[18]</a></sup>
+      <sup class="ref"><a href="#r-fra-ssr">[19]</a></sup>.
+    </li>
+  </ul>
+
+  <h2>Source evaluation: the video itself</h2>
+
+  <p>
+    Several features of the video lower its evidentiary weight before any individual
+    claim is tested. No regulator, airline, treaty, or ICAO document is named. No
+    effective date is given for any specific rule. No jurisdiction is named: the video
+    says "international" and "many international airports" throughout, but a rule that
+    applies in Atlanta does not automatically apply in Frankfurt or Tallinn, and vice
+    versa. The scripted phrases ("I'm using the updated medical exemption policy for
+    health devices," "Medical devices are exempt under current regulations") do not
+    match any actual regulatory language. The repeated structure — a real underlying
+    right, a fabricated effective date, a magic phrase — is consistent with AI-drafted
+    content optimised for retention rather than with regulatory writing.
+  </p>
+  <p>
+    This does not by itself make the twelve claims false. It does mean each one must
+    be tested against primary sources.
+  </p>
+
+  <h2>Claim-by-claim evaluation</h2>
+
+  <p>
+    The table below summarises each of the twelve claims and classifies the actual
+    mechanism as <code>law</code>, <code>airline-policy</code>,
+    <code>airport-practice</code>, or <code>discretion</code>. "Real right" means a
+    genuine protection exists in at least one major jurisdiction. "Partial / mixed"
+    means the right exists for a narrower population, or only in some jurisdictions.
+    "Not as stated" means the effective date, scope, or mechanism does not hold up.
+  </p>
+
+  <table class="claim-table">
+    <colgroup>
+      <col class="c-num">
+      <col class="c-claim">
+      <col class="c-type">
+      <col class="c-verdict">
+      <col class="c-actual">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Video claim</th>
+        <th>Type</th>
+        <th>Verdict</th>
+        <th>Actual position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>"Since late 2025" you no longer remove medical essentials (CPAP, insulin, heart meds, medical liquids) from your bag at security.</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-partial">Partial / mixed</span></td>
+        <td>TSA allows medically necessary liquids above the usual 3.4&nbsp;oz limit, but they must be declared and may need separate screening<sup class="ref"><a href="#r-tsa-disabilities">[1]</a></sup>. TSA CPAP guidance is procedural and conditional, not a blanket "leave everything in the bag" exemption<sup class="ref"><a href="#r-tsa-cpap">[2]</a></sup>. No 2025 rule change matches the transcript's description.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>If over 65 with any mobility limitation, you are entitled to "assisted boarding."</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-exists">Real right, misframed</span></td>
+        <td>Preboarding and assisted boarding for disabled or reduced-mobility passengers exist under U.S., EU, UK and Canadian frameworks<sup class="ref"><a href="#r-dot-acaa">[3]</a></sup><sup class="ref"><a href="#r-eu1107">[7]</a></sup><sup class="ref"><a href="#r-uk-caa">[9]</a></sup>. The trigger is reduced mobility or disability-related need, not age 65 by itself.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>"Updated accessibility rules" between late 2025 and 2026 mean a companion cannot be separated from a PRM passenger.</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-partial">Real right, wrong date</span></td>
+        <td>EU 1107/2006 says an accompanying person must, if requested, be allowed to provide necessary assistance in the airport and with embarking or disembarking<sup class="ref"><a href="#r-eu1107">[7]</a></sup>. U.S. seating rules can require adjoining seats for qualifying in-flight assistants<sup class="ref"><a href="#r-dot-seating">[5]</a></sup>. This is not a new 2025-2026 worldwide rule.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Airports are now required globally to provide "continuous" mobility assistance from check-in to seat, with no handoffs.</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-partial">Right exists, "no handoffs" overstated</span></td>
+        <td>EU law covers assistance from designated arrival points through check-in, security, boarding, the aircraft door and the seat, normally with 48&nbsp;hours' notice<sup class="ref"><a href="#r-eu1107">[7]</a></sup>. DOT also requires airport navigation assistance on covered flights<sup class="ref"><a href="#r-dot-wheelchair">[4]</a></sup>. "No handoffs" is the transcript's gloss, not the legal standard.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Passengers with mobility limitations can claim any "accessible seat" — including paid premium rows — at no extra cost.</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-partial">Partial</span></td>
+        <td>U.S. DOT rules require certain free disability-related seating accommodations, such as movable aisle-armrest, adjoining, and bulkhead or other suitable seats; they do not require a different class of service or more than one seat per ticket<sup class="ref"><a href="#r-dot-seating">[5]</a></sup>. EU law requires reasonable efforts to arrange suitable seating subject to safety and availability<sup class="ref"><a href="#r-eu1107">[7]</a></sup>.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Crew are "required" under updated rules to store temperature-sensitive medication in the aircraft refrigerator on request.</td>
+        <td><span class="type-pill">airline-policy</span></td>
+        <td><span class="verdict-pill v-false">Not as stated</span></td>
+        <td>No checked regulator source creates a crew-refrigeration obligation. Delta says its galleys are not equipped to refrigerate or store medication and tells passengers to bring a personal cooling method<sup class="ref"><a href="#r-delta-medication">[13]</a></sup>. Air Canada similarly tells passengers to bring a cooler and says crew cannot look after medication on board<sup class="ref"><a href="#r-air-canada-carryon">[14]</a></sup>.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>"Many international airports" introduced low-stimulation quiet areas in late 2025 that seniors with mobility support can access.</td>
+        <td><span class="type-pill">airport-practice</span></td>
+        <td><span class="verdict-pill v-partial">Real, but not a 2025 global rollout</span></td>
+        <td>Sensory rooms and assistance lounges exist airport-by-airport. Dublin books free sensory-room sessions for passengers who may feel overwhelmed<sup class="ref"><a href="#r-dublin-sensory">[17]</a></sup>, and Gatwick provides a sensory room and dedicated assistance seating<sup class="ref"><a href="#r-gatwick-sensory">[18]</a></sup>. These are airport practices, not an international senior rule.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>A separate "medical bag" is allowed in addition to carry-on and personal item "under updated security rules."</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-partial">Real right (U.S.), wrongly framed as a 2026 rule</span></td>
+        <td>Under DOT guidance, assistive devices, including CPAP machines, prescription medication and medical devices needed to administer it, do not count against baggage limits<sup class="ref"><a href="#r-dot-devices">[6]</a></sup>. Delta also treats qualifying medical supplies or equipment as an additional carry-on item when packed separately from non-essential items<sup class="ref"><a href="#r-delta-medical-supplies">[16]</a></sup>. This is not a general third-bag rule for every senior worldwide.</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Saying "I have a special service request registered on my reservation" triggers priority handling across the whole journey.</td>
+        <td><span class="type-pill">airline-policy</span></td>
+        <td><span class="verdict-pill v-partial">Real mechanism, overstated effect</span></td>
+        <td>Service codes such as WCHR, WCHS and WCHC are real operational codes used in civil aviation<sup class="ref"><a href="#r-fra-ssr">[19]</a></sup>. But they are not activated by a magic phrase at the gate; the durable mechanism is booking special assistance through the airline or travel agent in advance.</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Airlines cannot force you to gate-check a carry-on containing medical items "under current regulations."</td>
+        <td><span class="type-pill">law</span></td>
+        <td><span class="verdict-pill v-exists">Broadly accurate (U.S.), not universal</span></td>
+        <td>DOT says small assistive devices may be stowed close to the passenger and do not count toward carry-on limits; they generally take precedence over other baggage, consistent with safety and hazardous-materials rules<sup class="ref"><a href="#r-dot-devices">[6]</a></sup>. The U.S. rule is strong, but not a universal formula for all medical carry-ons everywhere.</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>"Many airlines" apply select fee waivers — seat change, same-day change, call-centre, penalty fees — for passengers over 65, and will refund fees you've already paid.</td>
+        <td><span class="type-pill">airline-policy</span></td>
+        <td><span class="verdict-pill v-false">Not as stated</span></td>
+        <td>Delta's official fare page lists "senior discounts" only among discounts not offered on delta.com and available in certain markets<sup class="ref"><a href="#r-delta-fares">[15]</a></sup>. That is not evidence of broad senior fee waivers, call-centre waivers, same-day change waivers, or retroactive refunds. The transcript turns a narrow fare-policy possibility into a general entitlement.</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Gate staff have discretionary "courtesy flexibility" that is used more often for older passengers since the 2025–2026 updates.</td>
+        <td><span class="type-pill">discretion</span></td>
+        <td><span class="verdict-pill v-partial">True at the level of discretion; the "2025–2026 updates" are fiction</span></td>
+        <td>Crew and gate-agent discretion to reassign seats is real and always has been. There is no regulatory update attaching a specific senior-favourable discretion to it.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Does it apply worldwide? A jurisdiction check</h2>
+
+  <p>
+    The video frames its rules as "international." In practice, passenger protections
+    for older and reduced-mobility travellers come from overlapping but distinct
+    regional frameworks, and there is no single instrument that applies in Toronto,
+    Tallinn, Tokyo, Dubai and Atlanta alike.
+  </p>
+
+  <div class="jur-grid">
+    <div class="jur-card">
+      <div class="tag">United States</div>
+      <h4>Air Carrier Access Act + TSA guidance</h4>
+      <p>Strongest around assistive devices (cabin carriage, uncounted as carry-on), medical liquids, and service animals. No age-based rights; everything attaches to disability or medical need.</p>
+    </div>
+    <div class="jur-card">
+      <div class="tag">European Union · EEA · Estonia</div>
+      <h4>Regulation (EC) No 1107/2006</h4>
+      <p>Free assistance at all EU airports for PRM passengers, including those with age-related reduced mobility. Airport operator runs the assistance inside the terminal; airline handles on-board. 48-hour advance-notice rule applies.</p>
+    </div>
+    <div class="jur-card">
+      <div class="tag">United Kingdom</div>
+      <h4>Retained EU Reg. 1107/2006</h4>
+      <p>Same substantive regime as the EU, enforced domestically by the CAA after Brexit. No UK-specific 2026 overhaul.</p>
+    </div>
+    <div class="jur-card">
+      <div class="tag">Canada</div>
+      <h4>ATPDR (in force since 25 June 2020)</h4>
+      <p>Binding accessibility rules for large air carriers and terminals, enforceable by the Canadian Transportation Agency with fines up to C$250,000 per violation. Covers services, training, technical standards, and CATSA screening.</p>
+    </div>
+    <div class="jur-card">
+      <div class="tag">Rest of world</div>
+      <h4>National rules + ICAO Annex 9</h4>
+      <p>ICAO Annex 9 ("Facilitation") has accessibility provisions but is not directly enforceable by passengers. In most non-EU, non-US, non-Canadian jurisdictions, a passenger's rights depend on their airline's conditions of carriage and the local civil aviation authority.</p>
+    </div>
+    <div class="jur-card">
+      <div class="tag">Tallinn Airport · TLL</div>
+      <h4>PRM assistance per EU 1107/2006</h4>
+      <p>Free PRM assistance is bookable via the airline at least 48 hours before departure; airport can also be reached directly on +372 605 8788. No age threshold.</p>
+    </div>
+  </div>
+
+  <p>
+    The short answer to the worldwide question is: the <em>category</em> of rights the
+    video describes exists in most of the developed world, but the <em>specific rules</em>
+    do not apply worldwide, and the trigger is not "over 65." It is reduced mobility,
+    medical need, or a specific disability. In jurisdictions outside the EU / UK / US /
+    Canada / Australia / Japan, even that baseline cannot be assumed.
+  </p>
+
+  <h2>Competing interpretations</h2>
+
+  <p>
+    One reading is that the video is essentially a distorted but well-meaning summary
+    of real PRM law, made more dramatic for retention. On this view, the underlying
+    advice — ask for assistance, declare medical items, request an SSR code — is sound,
+    and the fictional "2026 rules" framing is a stylistic wrapper that can be
+    discounted.
+  </p>
+  <p>
+    A second reading is that the video is an example of a now-common content genre:
+    AI-assisted short-form video aimed at older viewers, optimised for watch-time
+    through false scarcity ("they won't tell you"), invented effective dates, and
+    confident magic phrases. On this view, the video is not a guide; it is a pattern,
+    and the pattern is the problem.
+  </p>
+  <p>
+    A third reading is that both can be true at once: the core advice is partly useful,
+    and the framing is nonetheless actively harmful because it encourages passengers to
+    cite regulations that do not exist in the form described, which erodes trust with
+    the actual staff who could help.
+  </p>
+
+  <h2>Critical synthesis</h2>
+
+  <p>
+    The originating statement — that new international 2026 rules exist specifically
+    for passengers over 65, and that the main barrier is airline silence — is not
+    supported. The underlying rights are older, narrower, and attached to reduced
+    mobility or medical need rather than age alone. The most testable specific
+    claims (the "2025 medical exemption," the crew refrigeration obligation, the
+    blanket senior fee waiver, the medical-bag third-allowance rule as a 2026 update)
+    do not hold up when checked against TSA, the European Commission, the Canadian
+    Transportation Agency, or published airline policy.
+  </p>
+  <p>
+    A more defensible synthesis is narrower. A senior traveller flying from an EU,
+    UK, or Canadian airport, or on a U.S. domestic flight, has meaningful, legally
+    enforceable rights concerning assistance, companion travel, carriage of medical
+    devices, and non-discrimination. These rights are not triggered by saying a magic
+    sentence at the gate. They are triggered by requesting assistance at least
+    48&nbsp;hours before the flight — normally through the airline — and by using the
+    correct SSR code.
+  </p>
+  <p>
+    The useful takeaway is not the script. It is the booking call.
+  </p>
+
+  <h2>Implication: why a site like this exists</h2>
+
+  <p>
+    Enough real rights exist, in enough jurisdictions, that a public resource
+    that tracks them and translates them into plain language would be useful.
+    But the case for such a resource is stronger than a simple "look up your
+    rights" portal, because the problem is not only that rights are opaque.
+    The problem is that the information environment around senior air travel
+    is being actively colonised by low-accuracy AI-generated video content.
+    Checking one such video carefully is also a way of building a method for
+    checking the genre.
+  </p>
+  <p>
+    That is the purpose of ConnectedInfo. A plausible next step from here is a
+    static, jurisdiction-indexed reference that holds one page per major
+    international airport (YYZ, TLL, FRA, LHR, CDG, ATL, DXB, and others), cites
+    each right to its regulator rather than to a video, and marks whether a
+    claim is law, airline policy, or airport practice. Whether that grows into
+    its own site or stays as a section inside ConnectedInfo is an open question
+    for the next inquiry.
+  </p>
+
+  <h2>Limits of this inquiry</h2>
+
+  <p>
+    This analysis is a framing evaluation, not a completed legal review. It does not
+    pull the underlying text of 14 CFR Part 382 and test every claim clause-by-clause.
+    It does not evaluate non-Western jurisdictions (Gulf carriers, East Asia, Latin
+    America, Africa) except at the level of noting that ICAO Annex 9 is not
+    directly enforceable. It does not include interviews with airport accessibility
+    officers at TLL, YYZ, or elsewhere, which would be the strongest next step.
+  </p>
+
+  <h2>Open questions</h2>
+
+  <ul>
+    <li>How large is the delivery gap in the EU between what Reg. 1107/2006 entitles
+        PRM passengers to and what they actually receive at small airports like TLL?</li>
+    <li>Do any non-EU, non-North American jurisdictions have stronger senior-specific
+        air-travel rights than those described here, and would they falsify the
+        "no such thing as a worldwide 2026 rule" conclusion?</li>
+    <li>What would a minimal per-airport fact-schema look like — enough to cover
+        assistance, medical carriage, companion travel, quiet rooms, and fees —
+        without becoming unmaintainable?</li>
+    <li>How should a monitoring site handle rapid change in airline conditions of
+        carriage, which are amended far more often than regulations?</li>
+    <li>Can the same site also serve as an evidence-based rebuttal resource for
+        specific misleading videos, linked per claim rather than per video?</li>
+  </ul>
+
+  <div class="refs" id="refs">
+    <div class="eyebrow">Sources</div>
+    <ol>
+      <li id="r-tsa-disabilities">TSA, "Disabilities and Medical Conditions." Accessed 23 April 2026. <a href="https://www.tsa.gov/travel/tsa-cares/disabilities-and-medical-conditions">tsa.gov/travel/tsa-cares/disabilities-and-medical-conditions</a></li>
+      <li id="r-tsa-cpap">TSA, "Nebulizers, CPAPs, BiPAPs, and APAPs." Accessed 23 April 2026. <a href="https://www.tsa.gov/travel/security-screening/whatcanibring/items/nebulizers-cpaps-bipaps-and-apaps">tsa.gov/travel/security-screening/whatcanibring/items/nebulizers-cpaps-bipaps-and-apaps</a></li>
+      <li id="r-dot-acaa">U.S. Department of Transportation, "About the Air Carrier Access Act." Accessed 23 April 2026. <a href="https://www.transportation.gov/airconsumer/passengers-disabilities">transportation.gov/airconsumer/passengers-disabilities</a></li>
+      <li id="r-dot-wheelchair">U.S. Department of Transportation, "Wheelchair and Guided Assistance." Accessed 23 April 2026. <a href="https://www.transportation.gov/individuals/aviation-consumer-protection/wheelchair-and-guided-assistance">transportation.gov/individuals/aviation-consumer-protection/wheelchair-and-guided-assistance</a></li>
+      <li id="r-dot-seating">U.S. Department of Transportation, "Seating Accommodation Interactive Guide." Accessed 23 April 2026. <a href="https://www.transportation.gov/resources/individuals/aviation-consumer-protection/seating-accommodation-guide/seating">transportation.gov/resources/individuals/aviation-consumer-protection/seating-accommodation-guide/seating</a></li>
+      <li id="r-dot-devices">U.S. Department of Transportation, "Assistive Device - Stowage, Damage, and Delay." Accessed 23 April 2026. <a href="https://www.transportation.gov/resources/individuals/aviation-consumer-protection/assistive-device-guides/assistive-device-stowage">transportation.gov/resources/individuals/aviation-consumer-protection/assistive-device-guides/assistive-device-stowage</a></li>
+      <li id="r-eu1107">Regulation (EC) No 1107/2006 concerning the rights of disabled persons and persons with reduced mobility when travelling by air. <a href="https://eur-lex.europa.eu/eli/reg/2006/1107/oj/eng">eur-lex.europa.eu/eli/reg/2006/1107/oj/eng</a></li>
+      <li id="r-eu1107-guide">European Commission, "Air - Passenger rights," linking the 4 October 2024 interpretative guidelines on Regulation (EC) No 1107/2006. Accessed 23 April 2026. <a href="https://transport.ec.europa.eu/transport-themes/passenger-rights/air_en">transport.ec.europa.eu/transport-themes/passenger-rights/air_en</a></li>
+      <li id="r-uk-caa">UK Civil Aviation Authority, "Your rights as a disabled passenger or passenger with reduced mobility." Accessed 23 April 2026. <a href="https://www.caa.co.uk/passengers-and-public/special-assistance/your-rights-as-a-disabled-passenger-or-passenger-with-reduced-mobility/">caa.co.uk/passengers-and-public/special-assistance/your-rights-as-a-disabled-passenger-or-passenger-with-reduced-mobility</a></li>
+      <li id="r-tll">Tallinn Airport, "Travelling with reduced mobility." Accessed 23 April 2026. <a href="https://airport.ee/en/travelling-with-reduced-mobility/">airport.ee/en/travelling-with-reduced-mobility</a></li>
+      <li id="r-canada-atpdr">Government of Canada, Accessible Transportation for Persons with Disabilities Regulations, SOR/2019-244. Accessed 23 April 2026. <a href="https://laws.justice.gc.ca/eng/regulations/SOR-2019-244/FullText.html">laws.justice.gc.ca/eng/regulations/SOR-2019-244/FullText.html</a></li>
+      <li id="r-cta-guide">Canadian Transportation Agency, "Transportation Service Providers Covered by the Accessible Transportation for Persons with Disabilities Regulations: A Guide." Accessed 23 April 2026. <a href="https://otc-cta.gc.ca/eng/publication/transportation-service-providers-covered-accessible-transportation-persons-disabilities">otc-cta.gc.ca/eng/publication/transportation-service-providers-covered-accessible-transportation-persons-disabilities</a></li>
+      <li id="r-delta-medication">Delta Air Lines, "Medical Devices and Medication." Accessed 23 April 2026. <a href="https://www.delta.com/us/en/accessible-travel-services/assistive-devices-medication">delta.com/us/en/accessible-travel-services/assistive-devices-medication</a></li>
+      <li id="r-air-canada-carryon">Air Canada, "Carry On Baggage." Accessed 23 April 2026. <a href="https://www.aircanada.com/ca/en/aco/home/plan/baggage/carry-on.html">aircanada.com/ca/en/aco/home/plan/baggage/carry-on.html</a></li>
+      <li id="r-delta-fares">Delta Air Lines, "Fares &amp; Discounts." Accessed 23 April 2026. <a href="https://www.delta.com/us/en/booking-information/fare-classes-and-tickets/fares-and-discounts">delta.com/us/en/booking-information/fare-classes-and-tickets/fares-and-discounts</a></li>
+      <li id="r-delta-medical-supplies">Delta Air Lines, "Medical Supplies &amp; Wheelchairs." Accessed 23 April 2026. <a href="https://www.delta.com/us/en/baggage/special-items/medical-supplies-wheelchairs">delta.com/us/en/baggage/special-items/medical-supplies-wheelchairs</a></li>
+      <li id="r-dublin-sensory">Dublin Airport, "Sensory Room." Accessed 23 April 2026. <a href="https://www.dublinairport.com/accessibility/sensory-room">dublinairport.com/accessibility/sensory-room</a></li>
+      <li id="r-gatwick-sensory">London Gatwick, "Sensory room / special assistance." Accessed 23 April 2026. <a href="https://www.gatwickairport.com/passenger-guides/special-assistance/sensory-room.html">gatwickairport.com/passenger-guides/special-assistance/sensory-room.html</a></li>
+      <li id="r-fra-ssr">FraCareServices GmbH, "Your Mobility." Accessed 23 April 2026. <a href="https://www.fracareservices.com/english/your-journey/your-mobility/">fracareservices.com/english/your-journey/your-mobility</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<footer class="site">
+  <p>Published on <a href="index.html" style="color: var(--accent-strong);">ConnectedInfo</a> · Method inherited from the <a href="https://connectednature.org/" style="color: var(--accent-strong);">ConnectedNature</a> research pattern · v0.2</p>
+</footer>
+
+</body>
+</html>
