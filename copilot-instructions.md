@@ -1,107 +1,258 @@
-# ConnectedInfo website instructions
-
-This repository contains the public website for **ConnectedInfo**.
+# Copilot Instructions for connectedinfo-site
 
 ## Project purpose
 
-ConnectedInfo is a sibling project to [ConnectedNature](https://connectednature.org). Where ConnectedNature publishes broad inquiries into connectedness across nature, society, knowledge, and history, ConnectedInfo publishes focused claim-by-claim evaluations of specific statements that circulate widely online — typically AI-assisted short-form content whose factual basis is thin.
+This repository powers the public website for **ConnectedInfo**.
 
-Each published inquiry:
+ConnectedInfo publishes focused fact-checks of AI-assisted queries and widely shared claims. Each published page should begin from a concrete public claim, restate it as a testable question, check it against primary and high-quality secondary sources, and present conclusions with visible limits and uncertainty.
 
-1. Picks a specific widely-shared claim (usually from a viral video, social post, or algorithmically-promoted article).
-2. Reframes it as a testable research question.
-3. Tests each specific factual claim against the relevant primary source (regulator, statute, official policy).
-4. Publishes a synthesis that separates real rights from invented framing.
+The site is a **static website** deployed with **Cloudflare Pages**.
 
-The working research materials for each inquiry live in [COIN](https://github.com/GeorgeMadlis/coin) under `research/<inquiry-slug>/`. This repository contains only the public-facing site.
+## Current deployment assumptions
 
-## Editorial principles
+- This is a static site, not a full application framework.
+- Public site files live in `site/`.
+- The homepage is `site/index.html`.
+- Additional articles are standalone HTML files in `site/`.
+- Cloudflare Pages should publish from the `site` directory.
+- Avoid introducing unnecessary frameworks, build systems, or runtime dependencies unless explicitly requested.
 
-When writing or revising content:
+## What Copilot should optimize for
 
-- **Do not repeat the claim; investigate it.** A page that just quotes a viral claim and then argues about it amplifies the claim. Reframe it as a research question first.
-- **Primary sources only.** Every factual assertion cites a regulator, statute, or official operator/airline policy — never another video, blog, or content farm.
-- **Claim classification is mandatory.** Each right, rule, or entitlement in an inquiry is marked as one of: `law`, `airline-policy`, `airport-practice`, or `discretion`. Never blur them.
-- **No magic phrases.** Do not repackage primary-source language as scripted sentences for readers to recite at staff. If a reader needs to know how to invoke a right, describe the mechanism (for example, "request at booking, at least 48 hours before departure") rather than a line to say.
-- **Uncertainty is visible.** If a claim is contested, if scope varies by carrier, or if the evidence supports a narrower conclusion than the framing suggests, the page says so.
-- **Findings and framings can diverge.** A viral claim can be directionally suggestive while being specifically false. An inquiry should be able to say both things at once.
-- **No hype, no "the truth they don't want you to know."** The tone is calm, precise, evidence-first. If the inquiry's finding sounds like a clickbait headline, the framing is wrong.
+1. **Clarity over cleverness**
+   - Prefer plain HTML and CSS.
+   - Keep structure simple and inspectable.
+   - Avoid hidden logic and unnecessary JavaScript.
 
-## What every inquiry page should contain
+2. **Credible publishing**
+   - Pages should support serious, evidence-based writing.
+   - Design should look calm, readable, and research-oriented.
+   - Never make the site look like clickbait or social-media spam.
 
-Preferred structure (inherited from ConnectedNature):
+3. **Static-first architecture**
+   - Prefer standalone HTML pages.
+   - Prefer shared CSS over per-page styling duplication.
+   - Use minimal vanilla JavaScript only when genuinely useful.
+
+4. **Good reading experience**
+   - Strong typography
+   - Clear hierarchy
+   - Comfortable line length
+   - Mobile-friendly layout
+   - Accessible contrast and semantic markup
+
+5. **Maintainability**
+   - Reuse shared header/footer/navigation patterns.
+   - Keep filenames stable and human-readable.
+   - Do not create complexity that would make hand-editing difficult.
+
+## Content model
+
+ConnectedInfo pages usually follow this structure:
 
 1. Title
-2. Originating statement (quoted verbatim from the source being tested, in a distinguishable block)
-3. Summary verdict — stated up front, before the evidence
-4. Why this matters
-5. Research question
-6. Evidence base (list of primary sources consulted)
-7. Source evaluation of the original claim itself
-8. Claim-by-claim table (if the source makes multiple specific claims)
-9. Jurisdiction check (if the claim is about rules that might vary geographically)
-10. Competing interpretations
-11. Critical synthesis
-12. Limits of the inquiry
-13. Open questions
-14. Sources (numbered, each linking to the primary source)
+2. Claim or question
+3. Why this matters
+4. Method / how the claim was checked
+5. Findings
+6. Source notes / references
+7. Limits and uncertainty
+8. Bottom line
 
-Pages may omit steps that do not apply — for example, an inquiry into a single claim does not need step 8.
+When generating article templates, default to this structure unless asked otherwise.
 
-## Design principles
+## Writing style for generated page copy
 
-The visual style inherits from ConnectedNature:
+- Precise
+- Sober
+- Non-hype
+- Evidence-aware
+- Explicit about uncertainty
+- Avoid overclaiming
+- Avoid moralizing unless the page specifically calls for it
+- Avoid generic marketing language
 
-- Off-white warm background
-- Dark neutral text
-- Muted green primary accent (shared with ConnectedNature)
-- **Warm ochre secondary accent** — this is the distinguishing ConnectedInfo mark. Use it for eyebrows, the "published inquiry" badge, feature-card left borders, and call-to-action buttons. This signals investigative / fact-checking tone without breaking the ConnectedNature family.
-- Serif headings (Iowan Old Style / Palatino family)
-- Sans-serif body text
-- Spacious layout, subtle borders, calm cards
-- No flashy animation, no hero video, no unnecessary JavaScript
+Preferred tone:
 
-The site should read like a research record, not like a news aggregator or an "AI product" landing page.
+- "Here is the claim."
+- "Here is what we checked."
+- "Here is what the evidence supports."
+- "Here is what remains unclear."
 
-## Technical rules
+## HTML guidance
 
-Unless explicitly told otherwise:
+When editing or generating HTML:
 
-- Plain HTML and CSS only. No framework, no bundler, no package manager.
-- Semantic HTML, accessible markup.
-- Styling should be centralised where possible (currently inline per page, can be externalised to `site/style.css`).
-- Relative links; no build-time path rewriting.
-- No tracking scripts.
+- Use semantic tags: `header`, `main`, `article`, `nav`, `section`, `aside`, `footer`
+- Use one `h1` per page
+- Preserve logical heading hierarchy
+- Add useful metadata in `<head>`
+- Include:
+  - `meta charset="utf-8"`
+  - `meta name="viewport" content="width=device-width, initial-scale=1"`
+  - descriptive `<title>`
+  - useful meta description where appropriate
+- Use accessible link text
+- Use lists and tables only when they genuinely improve comprehension
+- Prefer clean readable markup over deeply nested div structures
 
-## Site structure
+## CSS guidance
 
-```
-site/
-  index.html                            Landing page
-  airport-rules-for-seniors.html        First published inquiry
-  inquiries/                            (future — for expansion)
-  style.css                             (optional externalised CSS)
-```
+- Prefer one shared stylesheet when practical
+- Design language should feel:
+  - minimal
+  - trustworthy
+  - editorial
+  - calm
+- Avoid excessive animation
+- Avoid flashy gradients unless explicitly requested
+- Prefer spacing, typography, and layout over decorative effects
+- Ensure responsive behavior for desktop and mobile
+- Keep CSS organized by:
+  - base
+  - layout
+  - components
+  - article content
+  - utilities
 
-## Content relationship to ConnectedNature and COIN
+## JavaScript guidance
 
-- ConnectedInfo pages can link to ConnectedNature where the topic overlaps.
-- Each inquiry should include a link to the working research folder in COIN where the claims ledger, source notes, and evaluation live (the pattern ConnectedNature uses for its Research Trail sections).
-- Do not expose engine-level implementation details (COIN pipeline, SQLite schema, prompts) on the public site unless they help the reader understand the research method.
+- Use JavaScript only when needed
+- Prefer vanilla JS
+- Avoid frameworks unless explicitly requested
+- Do not introduce build tooling just to support small interactions
+- Any JS should progressively enhance the static HTML rather than become required for basic reading
 
-## When creating or editing pages
+## File and page conventions
 
-Always preserve:
+Use clear, durable filenames:
 
-- The separation between quoted originating claim and published synthesis.
-- The sibling relationship to ConnectedNature (linked in both the header and the footer).
-- The primary-source-only rule.
-- The calm, evidence-first tone.
-- The `law` / `airline-policy` / `airport-practice` / `discretion` classification for any right cited.
+- `index.html`
+- `about.html`
+- `method.html`
+- `airport-rules-for-seniors.html`
 
-When making improvements:
+Slug rules:
 
-- Clarity first.
-- Source strength second (prefer the regulator to the summary of the regulator).
-- Visual hierarchy third.
-- Keep the site simple.
+- lowercase
+- hyphen-separated
+- descriptive
+- no dates in filenames unless explicitly requested
+
+## Navigation guidance
+
+Default top-level navigation should remain simple. Typical items:
+
+- Home
+- Method
+- About
+
+Optionally:
+
+- Articles
+- Notes
+- Sources
+
+Do not bloat navigation.
+
+## Source and citation presentation
+
+When generating article markup, support references cleanly.
+
+Preferred patterns:
+
+- inline footnote markers
+- endnotes section
+- source list with publication/title/date/link
+- separate "Limits" section where appropriate
+
+Do not fabricate citations.
+Do not insert placeholder citations that look real.
+If placeholder text is needed, mark it clearly as placeholder.
+
+## SEO and sharing guidance
+
+For public pages, prefer basic but solid metadata:
+
+- page title
+- meta description
+- canonical URL when known
+- Open Graph title/description when requested
+
+Do not over-optimize for SEO. The site should read like a credible publication, not a growth-hacking asset.
+
+## Accessibility requirements
+
+Always aim for:
+
+- semantic HTML
+- keyboard-usable navigation
+- sufficient contrast
+- visible focus states
+- descriptive alt text for meaningful images
+- decorative images marked appropriately
+- readable font sizes and spacing
+
+## What to avoid
+
+Do not:
+
+- add React, Next.js, Astro, Tailwind, or other frameworks unless explicitly asked
+- add package managers or build steps unless explicitly asked
+- add analytics scripts unless explicitly requested
+- add dark patterns
+- add newsletter popups
+- add cookie banners unless actually required
+- add autogenerated filler sections
+- use fake testimonials, fake author bios, or fake metrics
+- turn the site into a generic blog template without preserving ConnectedInfo's research-oriented identity
+
+## Preferred workflow for changes
+
+When asked to make changes:
+
+1. inspect the existing files in `site/`
+2. preserve current structure and style where reasonable
+3. make the smallest clean change that solves the task
+4. avoid unrelated refactors
+5. keep deployment compatibility with Cloudflare Pages publishing from `site/`
+
+## If asked to add a new article
+
+Default behavior:
+
+- create a new standalone HTML page in `site/`
+- keep visual consistency with homepage
+- add a link from `site/index.html` if appropriate
+- include sections for:
+  - claim
+  - method
+  - findings
+  - limits
+  - sources
+
+## If asked to redesign
+
+Preserve these core traits:
+
+- editorial
+- calm
+- trustworthy
+- static
+- lightweight
+- legible
+- evidence-first
+
+Redesign should improve typography, hierarchy, spacing, and navigation before introducing visual novelty.
+
+## Deployment awareness
+
+This site is deployed on Cloudflare Pages.
+Assume:
+
+- no server-side runtime
+- no database
+- no Node requirement unless explicitly introduced
+- publish directory is `site`
+
+Any generated solution should work in that environment by default.

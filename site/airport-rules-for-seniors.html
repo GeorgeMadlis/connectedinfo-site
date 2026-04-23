@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Airport Rules for Seniors Over 65 — A Critical Inquiry</title>
   <meta name="description" content="A claim-by-claim evaluation of a viral YouTube transcript about alleged 2026 airport rules for seniors, checked against official regulators and operator policies.">
   <style>
@@ -38,6 +38,33 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    a {
+      color: inherit;
+      text-decoration-thickness: 0.06em;
+      text-underline-offset: 0.16em;
+    }
+
+    a:hover, a:focus-visible { color: var(--accent-strong); }
+
+    :focus-visible {
+      outline: 2px solid rgba(70, 88, 67, 0.34);
+      outline-offset: 0.18rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      padding: 0.8rem 1rem;
+      border-radius: 0.65rem;
+      background: var(--accent-strong);
+      color: #fff;
+      text-decoration: none;
+      z-index: 20;
+    }
+    .skip-link:focus { top: 1rem; }
+    .skip-link:hover, .skip-link:focus-visible { color: #fff; }
+
     header.site {
       border-bottom: 1px solid var(--line);
       padding: 1rem 2rem;
@@ -49,8 +76,9 @@
     }
     nav.site {
       display: flex;
+      flex-wrap: wrap;
       align-items: baseline;
-      gap: 1.5rem;
+      gap: 0.6rem 1.5rem;
       max-width: var(--max-width);
       margin: 0 auto;
     }
@@ -66,6 +94,14 @@
       font-size: 0.85rem;
       color: var(--text-soft);
       text-decoration: none;
+    }
+    nav.site a:hover, nav.site a:focus-visible {
+      color: var(--accent-strong);
+      text-decoration: underline;
+    }
+    nav.site a[aria-current="page"] {
+      color: var(--accent-strong);
+      font-weight: 600;
     }
     nav.site span.draft {
       padding: 0.2rem 0.55rem;
@@ -294,6 +330,9 @@
     }
 
     @media (max-width: 760px) {
+      header.site { padding: 0.9rem 1rem; }
+      .site-name { width: 100%; margin-right: 0; }
+      nav.site { gap: 0.45rem 1rem; }
       .claim-table { font-size: 0.86rem; }
       .claim-table th, .claim-table td { padding: 0.55rem 0.45rem; }
     }
@@ -301,16 +340,21 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="site">
   <nav class="site">
-    <a href="index.html" class="site-name" style="text-decoration: none; color: inherit;">ConnectedInfo</a>
+    <a href="index.html" class="site-name">ConnectedInfo</a>
+    <a href="index.html">Home</a>
+    <a href="index.html#method">Method</a>
+    <a aria-current="page" href="airport-rules-for-seniors.html">Airport rules</a>
     <span class="draft">Published inquiry · v0.2</span>
   </nav>
 </header>
 
 <div class="label-centered eyebrow" style="color: var(--accent-warn);">First Published Inquiry</div>
 
-<main>
+<main id="main">
 
   <h1>New Airport Rules for Seniors Over 65: A Claim-by-Claim Evaluation of a Viral Video</h1>
 
