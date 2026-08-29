@@ -4,7 +4,8 @@ Public website for **ConnectedInfo** — a sibling project to [ConnectedNature](
 
 ConnectedInfo reframes AI-assisted queries into focused questions and checks the validity of claims that circulate widely online. Each published inquiry picks a specific widely-shared statement, reframes it as a testable question, connects independent primary sources, and publishes the synthesis with its limits visible.
 
-The research method is inherited directly from ConnectedNature; the research engine behind both sites is [COIN](https://github.com/GeorgeMadlis/coin).
+The research method is inherited directly from ConnectedNature; the research and provenance layer
+behind both sites is [COIN](https://github.com/GeorgeMadlis/coin).
 
 ## Purpose
 
@@ -17,6 +18,10 @@ The first published inquiry examines a 300k-view YouTube video that reframes lon
 - **ConnectedNature** is the public site for broad inquiries into connectedness across nature, society, knowledge, and history.
 - **ConnectedInfo** (this site) is the public site for focused claim-by-claim fact-checks.
 - **COIN** is the shared research engine behind both. Working materials for each inquiry live in `coin/research/<inquiry-slug>/`.
+
+COIN material may range from ordinary research notes, to recorded inquiries, to lightweight or full
+formal bundles. A ConnectedInfo fact-check does not require a formal bundle merely because it has a
+visible research trail.
 
 The two sites share a visual family — off-white background, serif headings, muted palette — but ConnectedInfo adds a warm secondary accent to signal its own voice (fact-checking, investigative) as distinct from ConnectedNature's primary green (scholarly, contemplative).
 
